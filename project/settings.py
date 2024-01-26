@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'userauths.User'
 
 # Application definition
 
@@ -52,7 +53,6 @@ INSTALLED_APPS = [
     'crispy_forms',
     'taggit',
     'import_export',
-    'pillow',
 ]
 
 MIDDLEWARE = [
@@ -70,7 +70,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,6 +134,12 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATIC_ROOT= BASE_DIR / 'staticfiles'
+
+STATICFILES_DIRS = [ BASE_DIR / 'static' ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
@@ -146,8 +152,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 JAZZMIN_SETTINGS = {
     'site_header': "Facebook Clone",
     'site_brand': "Connecting people together...",
-    'site_logo': "images/logo.png",
-    'copyright':  "All Right Reserved 2023",
+    'site_logo': "assets/images/logo.png",
+    'copyright':  "All Right Reserved Mahmoud-Rizek 2024",
     "welcome_sign": "Welcome to Facebook Clone, Login Now.",
     "topmenu_links": [
         {"name": "Home",  "url": "admin:index", "permissions": ["auth.view_user"]},
@@ -157,9 +163,6 @@ JAZZMIN_SETTINGS = {
 
     "order_with_respect_to": [
         "core",
-        "core.post",
-        "core.friend",
-        "core.FriendRequest",
         "userauths",
         "addon",
     ],
@@ -173,14 +176,6 @@ JAZZMIN_SETTINGS = {
         "userauths.User": "fas fa-user",
         "userauths.Profile":"fas fa-address-card",
 
-        "core.post": "fas fa-th",
-        "core.Page": "fas fa-users",
-        "core.ReplyComment": "fas fa-reply",
-        "core.group": "fas fa-layer-group",
-        "core.notification": "fas fa-bell",
-        "core.Comment":"fas fa-comments",
-        "core.Friend":"fas fa-users",
-        "core.FriendRequest":"fas fa-user-plus",
     },
 
     "show_ui_builder" : True
@@ -217,4 +212,4 @@ JAZZMIN_UI_TWEAKS = {
     }
 }
 
-
+ 
